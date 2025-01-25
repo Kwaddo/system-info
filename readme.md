@@ -68,7 +68,7 @@ npm install -g expo-cli
 
 ```bash
 git clone https://github.com/Kwaddo/system-info
-cd system-info-minesweeper
+cd system-info
 ```
 
 ### Install dependencies
