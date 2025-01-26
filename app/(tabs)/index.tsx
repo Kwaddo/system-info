@@ -2,6 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, useColorScheme } from 'react-native';
 import * as Device from 'expo-device';
 
+async function getUptimeInMinutes() {
+  const uptimeInMilliseconds = await Device.getUptimeAsync();
+  const uptimeInMinutes = Math.floor(uptimeInMilliseconds / 1000 / 60);
+  return uptimeInMinutes+" Minutes";
+}
+
+function getTotalMemoryInGB() {
+  const totalMemoryInBytes = Device.totalMemory;
+  if (totalMemoryInBytes === null) {
+    return 'Unknown Memory';
+  }
+  const totalMemoryInGB = Math.round(totalMemoryInBytes / (1024 * 1024 * 1024));
+  return totalMemoryInGB+" GB";
+}
+
 const SystemInfo = () => {
   const [systemInfo, setSystemInfo] = useState<any>(null);
   const colorScheme = useColorScheme();
@@ -9,11 +24,21 @@ const SystemInfo = () => {
   useEffect(() => {
     const info = {
       'Device Name': Device.deviceName || 'Unknown Device',
+      'Device Design Name': Device.designName || 'Unknown Design',
+      'Device Product Name': Device.productName || 'Unknown Product',
       'System Name': Device.osName || 'Unknown OS',
       'System Version': Device.osVersion || 'Unknown Version',
+      'System Build Number': Device.osBuildId || 'Unknown Build Number',
+      'System API Level': Device.osInternalBuildId || 'Unknown API Level',
+      'Total Memory': getTotalMemoryInGB() || 'Unknown Memory Level',
       'Brand': Device.brand || 'Unknown Brand',
       'Model': Device.modelName || 'Unknown Model',
+      'Device Type': Device.deviceType || 'Unknown Device Type',
+      'Device Year Class': Device.deviceYearClass || 'Unknown Year Class',
+      'Device Model ID': Device.modelId || 'Unknown Identifier',
       'Manufacturer': Device.manufacturer || 'Unknown Manufacturer',
+      'Supported Architecture CPU': Device.supportedCpuArchitectures || 'Unknown Architecture',
+      'Current Uptime': getUptimeInMinutes() || 'Unknown Uptime',
     };
     setSystemInfo(info);
   }, []);
