@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, useColorScheme } from 'react-native';
 import * as Device from 'expo-device';
+import * as Battery from 'expo-battery';
 
 async function getUptimeInMinutes() {
   const uptimeInMilliseconds = await Device.getUptimeAsync();
@@ -15,6 +16,11 @@ function getTotalMemoryInGB() {
   }
   const totalMemoryInGB = Math.round(totalMemoryInBytes / (1024 * 1024 * 1024));
   return totalMemoryInGB+" GB";
+}
+
+async function getBatteryLevel() {
+  const batteryLevel = await Battery.getBatteryLevelAsync();
+  return (Math.round(batteryLevel*100))+"%";
 }
 
 const SystemInfo = () => {
@@ -39,6 +45,7 @@ const SystemInfo = () => {
       'Manufacturer': Device.manufacturer || 'Unknown Manufacturer',
       'Supported Architecture CPU': Device.supportedCpuArchitectures || 'Unknown Architecture',
       'Current Uptime': getUptimeInMinutes() || 'Unknown Uptime',
+      'Battery Level': getBatteryLevel() || 'Unknown Battery Level',
     };
     setSystemInfo(info);
   }, []);
@@ -49,9 +56,6 @@ const SystemInfo = () => {
 
   return (
     <View style={[styles.container, colorScheme === 'dark' ? styles.darkBg : styles.lightBg]}>
-      <Text style={[styles.heading, colorScheme === 'dark' ? styles.darkText : styles.lightText]}>
-        System Information
-      </Text>
       {Object.entries(systemInfo).map(([key, value]) => (
         <Text
           key={key}

@@ -1,11 +1,12 @@
-# System Info & Minesweeper App
+# System Info, Task Manager, & Minesweeper App
 
-![System-Info Screenshot](./preview/image.webp)
+![System-Info Screenshot](./preview/image.jpg)
 
-A React Native application built with Expo that provides two key features:
+A React Native application built with Expo that provides three key features:
 
 1. **System Information**: Displays general system details about the device, such as the operating system, device name, manufacturer, and model.
-2. **Minesweeper**: A simple version of the classic Minesweeper game, with an 8x8 board and 10 mines.
+2. **Task Manager**: Allows users to create and manage tasks with a default interval of 60 seconds.
+3. **Minesweeper**: A simple version of the classic Minesweeper game, with an 8x8 board and 10 mines.
 
 ---
 
@@ -31,6 +32,10 @@ A React Native application built with Expo that provides two key features:
   - Manufacturer
 - Adapts to light and dark mode using the system's color scheme.
 
+### Task Manager
+
+- Displays manually created tasks within the application with an interval, defaulting to 60 seconds.
+
 ### Minesweeper
 
 - A minimal, classic Minesweeper implementation.
@@ -43,7 +48,11 @@ A React Native application built with Expo that provides two key features:
 
 ### System Info Screen
 
-![System Info Screenshot](./preview/IMG_4906.webp)  
+![System Info Screenshot](./preview/IMG_4925.webp)  
+
+### Task Manager Screen
+
+![Task Manager Screenshot](./preview/IMG_4926.webp)
 
 ### Minesweeper Screen
 
@@ -93,6 +102,10 @@ expo start
 ### System Information Usage
 
 - Navigate to the "System Info" tab to view details about your device.
+
+### Task Manager Usage
+
+- Navigate to the "Task Manager" tab to manage tasks.
 
 ### Minesweeper Usage
 
